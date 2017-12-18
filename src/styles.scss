@@ -1,8 +1,31 @@
 /* You can add global styles to this file, and also import other style files */
+$text-color: #282820;
+$hover-color: $text-color;
+$background-color: #f7f5ea;
+
+* {
+    // border: solid 1px red;
+    font-family: 'Overlock', sans-serif;
+    color: $text-color;
+}
+
 html {
-box-sizing: border-box;
+    box-sizing: border-box;
+    background-color: $background-color;
 }
 
 *, *:before, *:after {
-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+a {
+    color: $hover-color;
+    text-decoration: none;
+}
+
+a:hover, a.active {
+    background-color: transparent;
+    text-decoration: none;
+    font-weight: 700;
+    color: $hover-color;
 }
