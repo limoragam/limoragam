@@ -1,0 +1,21 @@
+* {
+    white-space: nowrap;
+}
+
+ul {
+    list-style: none;
+}
+
+@media (min-width: 700px) {
+    ul {
+        display: flex;
+    //   justify-content: space-between;
+        padding: 0;
+        font-size: 0.9em;
+        overflow: hidden;
+    }
+
+    li {
+        padding: 0 0.6em 0 0;
+    }
+}

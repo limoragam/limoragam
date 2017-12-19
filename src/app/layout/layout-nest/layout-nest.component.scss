@@ -1,10 +1,10 @@
 .layout-wrapper {
-    max-width: 900px;
+    max-width: 630px;
     margin: 0 auto;
 }
 
 // .layout-wrapper > * {
-//     border: 2px solid #f08c00;
+//     border: 1px solid #f08c00;
 // }
 
 nav {
@@ -14,6 +14,9 @@ nav {
 
 .layout-content {
     grid-area: content;
+}
+.layout-separator {
+    grid-area: separator;
 }
 .layout-nav {
     grid-area: nav;
@@ -26,6 +29,7 @@ nav {
     grid-gap: 20px;
     grid-template-areas: 
         "nav"
+        "separator"
         "content"
         "booby";
 }
@@ -33,7 +37,8 @@ nav {
     .layout-wrapper {
         grid-template-columns: 1fr 1fr;
         grid-template-areas: 
-            "nav     nav"
-            "booby content";
+            "nav       nav"
+            "separator separator" 
+            "booby     content";
     }
 }
