@@ -14,67 +14,44 @@ export class VisualNestComponent implements OnInit {
   @ViewChild('rightEye') rightEye: ElementRef;
   @ViewChild('rightPupil') rightPupil: ElementRef;
 
-  visualStart = this.visualNestService.visualStart;
-  visualFinal = this.visualNestService.visualFinal;
+  currentVisualIndex = this.visualNestService.visualStart;
+  currentVisual = this.visualNestService.visualsNest[this.currentVisualIndex];
 
-  bindingNumber = "0";
-  pathAttr = "'visualNestService.visualsNest[0].frameColor.d'";
-  
-  constructor(public visualNestService:VisualNestService) { }
+  constructor(public visualNestService: VisualNestService) { }
 
   ngOnInit() {
-    this.blinkStart();
+    this.blink();
+    setTimeout(() => {
+      this.changeVisual(this.currentVisualIndex + 1, this.visualNestService.visualsNest.length - 1);
+    }, 3000);
   }
 
-  blinkStart() {
+  blink() {
+    if (this.currentVisual.eyes.leftEye.length < 3) {
+      return;
+    }
+
     let timeline = new TimelineLite();
     timeline.delay(2);
-    timeline
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftEye[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftEye[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftEye[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftEye[0]}, ease: Cubic.easeInOut}, "blink3")
 
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftPupil[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftPupil[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftPupil[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.leftPupil[0]}, ease: Cubic.easeInOut}, "blink3")
-
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightEye[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightEye[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightEye[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightEye[0]}, ease: Cubic.easeInOut}, "blink3")
-
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightPupil[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightPupil[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightPupil[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualStart].eyeAnimation.rightPupil[0]}, ease: Cubic.easeInOut}, "blink3")
-      ;
+    this.visualNestService.blinkSeries.forEach(blinkStage => {
+      timeline.to(this.leftEye.nativeElement, 0.1, { attr: {d:this.currentVisual.eyes.leftEye[blinkStage.visualIndex]}, ease: Cubic.easeInOut}, blinkStage.label);
+      timeline.to(this.leftPupil.nativeElement, 0.1, { attr: {d:this.currentVisual.eyes.leftPupil[blinkStage.visualIndex]}, ease: Cubic.easeInOut}, blinkStage.label);
+      timeline.to(this.rightEye.nativeElement, 0.1, { attr: {d:this.currentVisual.eyes.rightEye[blinkStage.visualIndex]}, ease: Cubic.easeInOut}, blinkStage.label);
+      timeline.to(this.rightPupil.nativeElement, 0.1, { attr: {d:this.currentVisual.eyes.rightPupil[blinkStage.visualIndex]}, ease: Cubic.easeInOut}, blinkStage.label);
+    });
   }
 
-  blinkFinal() {
-    let timeline = new TimelineLite();
-    timeline.delay(2);
-    timeline
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftEye[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftEye[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftEye[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.leftEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftEye[0]}, ease: Cubic.easeInOut}, "blink3")
+  changeVisual(nextVisualIndex: number, lastVisualIndex: number) {
+    if (nextVisualIndex > lastVisualIndex) {
+      this.blink();
+      return;
+    }
 
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftPupil[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftPupil[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftPupil[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.leftPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.leftPupil[0]}, ease: Cubic.easeInOut}, "blink3")
-
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightEye[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightEye[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightEye[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.rightEye.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightEye[0]}, ease: Cubic.easeInOut}, "blink3")
-
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightPupil[1]}, ease: Cubic.easeInOut}, "blink0")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightPupil[2]}, ease: Cubic.easeInOut}, "blink1")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightPupil[1]}, ease: Cubic.easeInOut}, "blink2")
-      .to(this.rightPupil.nativeElement, 0.1, {attr: {d: this.visualNestService.visualsNest[this.visualFinal].eyeAnimation.rightPupil[0]}, ease: Cubic.easeInOut}, "blink3")
-      ;
+    setTimeout(() => {
+      this.currentVisualIndex = nextVisualIndex;
+      this.currentVisual = this.visualNestService.visualsNest[this.currentVisualIndex];
+      this.changeVisual(nextVisualIndex + 1, lastVisualIndex);
+    }, 100);
   }
 }

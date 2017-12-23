@@ -12,6 +12,7 @@ import { LineHorizontalComponent } from './visuals/line-horizontal/line-horizont
 import { MenuComponent } from './common/menu/menu.component';
 import { VisualNestComponent } from './visuals/visual-nest/visual-nest.component';
 import { ContentNestComponent } from './content/content-nest/content-nest.component';
+import { VisualEggComponent } from './visuals/visual-egg/visual-egg.component';
 
 
 @NgModule({
@@ -24,7 +25,8 @@ import { ContentNestComponent } from './content/content-nest/content-nest.compon
     LineHorizontalComponent,
     MenuComponent,
     VisualNestComponent,
-    ContentNestComponent
+    ContentNestComponent,
+    VisualEggComponent
   ],
   imports: [
     BrowserModule,
