@@ -4,7 +4,7 @@ export class VisualNest {
     public wingsColor = {attr:{}, d:""};    // {attr:{color, fill-rule, etc.}, d:[strings of paths]}
     public frame = [];                      // [strings of paths]
     public body = [];                       // [strings of paths]
-    public eyeAnimation = {
+    public eyes = {
         leftEye:[],
         leftPupil:[],
         rightEye:[],
@@ -17,13 +17,13 @@ export class VisualNest {
         wingsColor:{attr:{},d:string},
         frame:string[],
         body:string[],
-        eyeAnimation:{leftEye:string[],leftPupil:string[],rightEye:string[],rightPupil:string[]}
+        eyes:{leftEye:string[],leftPupil:string[],rightEye:string[],rightPupil:string[]}
     ) {
         this.frameColor = frameColor;
         this.beakColor = beakColor;
         this.wingsColor = wingsColor;
         this.frame = frame;
         this.body = body;
-        this.eyeAnimation = eyeAnimation;
+        this.eyes = eyes;
     }
 }
