@@ -1,11 +1,16 @@
 <ul>
-    <li>
-        <app-visual-egg></app-visual-egg>
+    <li><app-visual-egg (mouseenter)="showMenu()"></app-visual-egg></li>
+    <li class="menu-item" [ngClass]="menuItem.menuItemState" *ngFor="let menuItem of menuItems">
+        <!-- if item has an href, use href -->
+        <a 
+            *ngIf="menuItem.href; else aRouterLink" 
+            [href]="menuItem.href">{{menuItem.text}}</a>
+        <!-- otherwise, use routerLink -->
+        <ng-template #aRouterLink>
+            <a
+            [routerLink]="menuItem.routerLink" 
+            routerLinkActive="active" 
+            [routerLinkActiveOptions]="{exact:true}">{{menuItem.text}}</a>
+        </ng-template>
     </li>
-    <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">The Nest</a></li>
-    <li><a routerLink="/contact" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">Contact</a></li>
-    <li><a href="">Projects</a></li>
-    <li><a routerLink="/feet" routerLinkActive="active" [routerLinkActiveOptions]="{exact:true}">See My Feet</a></li>
-    <li><a href="">CV</a></li>
 </ul>
-  
