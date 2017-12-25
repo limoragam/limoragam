@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { TweenLite, Cubic, TimelineLite } from 'gsap';
+import { Cubic, TimelineLite } from 'gsap';
 import { VisualNestService } from './visual-nest.service';
 
 @Component({
