@@ -1,0 +1,41 @@
+$text-color: #282820;
+
+h2 {
+    margin: 0;
+}
+
+.form {
+    text-align: center;
+    transition: opacity 300ms ease-in-out;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+    align-items: center;
+}
+
+input, textarea {
+    margin: 0 1.5rem 0 0.2rem;
+    background-color: #fcedf0;
+}
+
+.button {
+    padding: 0.15rem 0.4rem;
+    cursor: pointer;
+    color: $text-color;
+}
+
+input, textarea, button {
+    border: solid 1px $text-color;
+    border-radius: 3px;
+}
+
+.button:disabled {
+    opacity: 0.6;
+    cursor: default;
+}
+
+input.ng-invalid.ng-touched, 
+textarea.ng-invalid.ng-touched {
+    border: 1px solid #e22b00;
+}

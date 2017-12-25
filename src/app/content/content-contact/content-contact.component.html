@@ -1,0 +1,14 @@
+<form class="form" (ngSubmit)="f.valid && onSubmit(f)" #f="ngForm">
+  <b>Name*: </b><input type="text" name="name" class="form-control" ngModel required>
+  <b>Mail*: </b><input type="email" name="email" class="form-control" ngModel required email #email="ngModel">
+  <b>Squawk*: </b><textarea 
+                   type="text" 
+                   name="squawk" 
+                   class="form-control" 
+                   rows="2" 
+                   required 
+                   validatorTextarea 
+                   ngModel 
+                   #squawk="ngModel"></textarea>
+  <button class="button" type="submit" [disabled]="!f.valid"><b>Submit</b></button>
+</form>

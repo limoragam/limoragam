@@ -5,10 +5,10 @@
     <div class="layout-separator">
         <app-line-horizontal></app-line-horizontal>
     </div>
-    <div class="layout-content">
-        <app-content-nest></app-content-nest>
-    </div> 
     <div class="layout-booby">
-        <app-visual-nest></app-visual-nest>
+        <app-visual-feet></app-visual-feet>
     </div>
+    <div #layoutContent class="layout-content" (mouseenter)="stretchText()">
+        <app-content-feet></app-content-feet>
+    </div> 
 </div>

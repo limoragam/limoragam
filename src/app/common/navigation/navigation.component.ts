@@ -14,7 +14,7 @@ export class NavigationComponent implements OnInit {
     {'menuItemState':'hidden', 'routerLink':'/portfolio', 'text':'Portfolio'},
     {'menuItemState':'hidden', 'routerLink':'/feet', 'text':'See My Feet'},
     {'menuItemState':'hidden', 'routerLink':'/about_me', 'text':'About Me'},
-    {'menuItemState':'hidden', 'routerLink':'/cv', 'text':'CV'},
+    {'menuItemState':'hidden', 'href':'/assets/CV.pdf', 'text':'CV'},
   ];
 
   constructor(private activatedRoute:ActivatedRoute) {}
@@ -29,7 +29,11 @@ export class NavigationComponent implements OnInit {
       currentPath = currentPath + this.activatedRoute.snapshot.url[0].path;
     }
     this.menuItems.forEach((menuItem, i) => {
-      if(menuItem.routerLink !== currentPath) {
+      if("routerLink" in menuItem) {
+        if(menuItem["routerLink"] !== currentPath) {
+          menuItem.menuItemState = 'visible';
+        }
+      } else {
         menuItem.menuItemState = 'visible';
       }
     });
@@ -40,6 +44,6 @@ export class NavigationComponent implements OnInit {
       transform:'translateX(0)', 
       opacity:1, 
       'font-size':'1rem'
-    }, 0.3);
+    }, 0.1);
   }
 }
