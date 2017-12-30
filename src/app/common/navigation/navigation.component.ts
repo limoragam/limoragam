@@ -13,7 +13,7 @@ export class NavigationComponent implements OnInit {
     {'menuItemState':'hidden', 'routerLink':'/contact', 'text':'Contact'},
     {'menuItemState':'hidden', 'routerLink':'/portfolio', 'text':'Portfolio'},
     {'menuItemState':'hidden', 'routerLink':'/feet', 'text':'See My Feet'},
-    {'menuItemState':'hidden', 'routerLink':'/about_me', 'text':'About Me'},
+    {'menuItemState':'hidden', 'routerLink':'/about', 'text':'About'},
     {'menuItemState':'hidden', 'href':'/assets/CV.pdf', 'text':'CV'},
   ];
 
