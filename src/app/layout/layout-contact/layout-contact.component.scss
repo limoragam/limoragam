@@ -25,8 +25,8 @@ h2 {
 .layout-nav {
     grid-area: nav;
 }
-.layout-booby {
-    grid-area: booby;
+.layout-visual {
+    grid-area: visual;
     text-align: center;
 }
 .layout-title {
@@ -41,7 +41,7 @@ h2 {
         "nav"
         "separator"
         "content"
-        "booby"
+        "visual"
         "title";
 }
 @media (min-width: 700px) {
@@ -50,7 +50,7 @@ h2 {
             "nav"
             "separator"
             "content" 
-            "booby"
+            "visual"
             "title";
     }
 }

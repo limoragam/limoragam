@@ -1,3 +1,5 @@
+import * as $ from 'jquery';
+
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
@@ -24,6 +26,11 @@ import { SafeUrlPipe } from './common/safe-url.pipe';
 // pending cleanup
 import { MenuComponent } from './common/menu/menu.component';
 import { ValidatorContactDirective } from './content/content-contact/validator-contact.directive';
+import { LayoutPortfolioComponent } from './layout/layout-portfolio/layout-portfolio.component';
+import { ContentPortfolioComponent } from './content/content-portfolio/content-portfolio.component';
+import { LayoutAboutComponent } from './layout/layout-about/layout-about.component';
+import { ContentAboutComponent } from './content/content-about/content-about.component';
+import { VisualAboutComponent } from './visuals/visual-about/visual-about.component';
 
 @NgModule({
   declarations: [
@@ -44,6 +51,11 @@ import { ValidatorContactDirective } from './content/content-contact/validator-c
     ValidatorContactDirective,  // pending cleanup
     ValidatorTextareaDirective,
     SafeUrlPipe,
+    LayoutPortfolioComponent,
+    ContentPortfolioComponent,
+    LayoutAboutComponent,
+    ContentAboutComponent,
+    VisualAboutComponent,
   ],
   imports: [
     BrowserModule,

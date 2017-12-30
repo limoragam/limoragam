@@ -22,8 +22,8 @@ nav {
 .layout-nav {
     grid-area: nav;
 }
-.layout-booby {
-    grid-area: booby;
+.layout-visual {
+    grid-area: visual;
 }
 .layout-wrapper {
     display: grid;
@@ -32,7 +32,7 @@ nav {
     grid-template-areas: 
         "nav"
         "separator"
-        "booby"
+        "visual"
         "content";
 }
 // @media (min-width: 700px) {
@@ -41,6 +41,6 @@ nav {
 //         grid-template-areas: 
 //             "nav       nav"
 //             "separator separator" 
-//             "booby     content";
+//             "visual     content";
 //     }
 // }
